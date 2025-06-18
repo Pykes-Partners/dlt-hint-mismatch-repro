@@ -1,4 +1,3 @@
 [tool.dlt]
-normalize_names = false
 [schema]
 #naming = "sql_cs_v1" 

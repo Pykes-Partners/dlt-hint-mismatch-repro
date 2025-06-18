@@ -1,13 +1,52 @@
 import os
 import json
 import toml
-import dlt
-from dlt.sources.sql_database import sql_database
+import difflib
 
 # 🧭 Load TOML config
 CONFIG_PATH = "C:/Properly_DWH_DLT/.dlt/config.toml"
 os.environ["DLT_CONFIG_FILES"] = CONFIG_PATH
 config = toml.load(CONFIG_PATH)
+
+import dlt
+from dlt.sources.sql_database import sql_database
+
+
+def compare_hints_to_schema(schema_dict, toml_config_path, section_name, table_name):
+    print(f"\n🔍 Running config/schema check for table: {table_name}")
+
+    # Load TOML config and pull the specific hint section
+    config = toml.load(toml_config_path)
+    hint_path = f"tool.dlt.hints.sql_to_sql_{section_name}.{table_name}.columns_meta"
+    try:
+        hints = config["tool"]["dlt"]["hints"][f"sql_to_sql_{section_name}"][table_name]["columns_meta"]
+    except KeyError:
+        print(f"⚠️ No config hints found for {hint_path}")
+        return
+
+    # Pull columns from schema
+    try:
+        schema_cols = schema_dict["tables"][table_name]["columns"]
+    except KeyError:
+        print(f"❌ Table '{table_name}' not found in schema.")
+        return
+
+    for col_hint in hints:
+        match = schema_cols.get(col_hint)
+        if match:
+            print(f"✅ Hint matches schema column: {col_hint}")
+        else:
+            closest = difflib.get_close_matches(col_hint, schema_cols.keys(), n=1)
+            suggestion = f"(Did you mean: {closest[0]})" if closest else ""
+            print(f"❌ Hint column '{col_hint}' not in schema {suggestion}")
+    
+    # Optional: highlight precision mismatches
+    for col in hints:
+        if col in schema_cols and "precision" in hints[col]:
+            hint_precision = hints[col]["precision"]
+            actual_precision = schema_cols[col].get("precision")
+            if actual_precision != hint_precision:
+                print(f"⚠️ Mismatch: Column '{col}' precision hint = {hint_precision}, but schema = {actual_precision}")
 
 def source(section_name: str):
     params = config["sources"][section_name]
@@ -40,6 +79,13 @@ def run():
 
     # 🎯 Trigger schema inference (should pick up TOML column hint)
     pipeline.extract(src)
+
+    compare_hints_to_schema(
+        schema_dict=pipeline.default_schema.to_dict(),
+        toml_config_path="C:/Properly_DWH_DLT/.dlt/config.toml",
+        section_name="erp_solvio",
+        table_name="aan_aankoopfactuur"
+    )
 
     schema_dict = pipeline.default_schema.to_dict()
     table = "aan_aankoopfactuur"

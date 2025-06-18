@@ -1,6 +1,5 @@
 [tool.dlt]
 pipeline_version = "0.0.0"
-normalize_names = false
 [schema]
 #naming = "sql_cs_v1" 
 [load]
