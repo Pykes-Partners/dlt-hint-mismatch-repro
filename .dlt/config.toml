@@ -1,0 +1,35 @@
+[tool.dlt]
+pipeline_version = "0.0.0"
+normalize_names = false
+[schema]
+#naming = "sql_cs_v1" 
+[load]
+delete_completed_jobs=true
+truncate_staging_dataset=true
+[data_writer]
+progress="log"
+buffer_max_items=20000
+# set buffers only in extract stage - for all sources
+[sources.data_writer]
+buffer_max_items=20000
+# set buffers in normalize stage
+[normalize.data_writer]
+buffer_max_items=20000
+[destination.mssql]
+enable_dataset_name_normalization=false
+[runtime]
+log_level="ERROR"  # the system log level of dlt
+# use the dlthub_telemetry setting to enable/disable anonymous usage data reporting, see https://dlthub.com/docs/reference/telemetry
+dlthub_telemetry=false
+
+
+[sources.erp_solvio]
+type = "sql_database"
+schema = "dbo"
+tables = ["AAN_Aankoopfactuur"]
+
+[tool.dlt.hints.sql_to_sql_erp_solvio.aan_aankoopfactuur.columns_meta]
+nu_te_betalen_bedrag = { data_type = "decimal", precision = 9, scale = 4 }
+
+
+

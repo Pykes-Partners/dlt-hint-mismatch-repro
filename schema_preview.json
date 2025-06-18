@@ -1,0 +1,433 @@
+{
+  "version": 1,
+  "version_hash": "sy0RoaTbxFi7SFTGHDWydlMTnvDnZyP3yEury/dNLgw=",
+  "engine_version": 11,
+  "name": "sql_database",
+  "tables": {
+    "_dlt_version": {
+      "name": "_dlt_version",
+      "columns": {
+        "version": {
+          "name": "version",
+          "data_type": "bigint",
+          "nullable": false
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "data_type": "bigint",
+          "nullable": false
+        },
+        "inserted_at": {
+          "name": "inserted_at",
+          "data_type": "timestamp",
+          "nullable": false
+        },
+        "schema_name": {
+          "name": "schema_name",
+          "data_type": "text",
+          "nullable": false
+        },
+        "version_hash": {
+          "name": "version_hash",
+          "data_type": "text",
+          "nullable": false
+        },
+        "schema": {
+          "name": "schema",
+          "data_type": "text",
+          "nullable": false
+        }
+      },
+      "write_disposition": "skip",
+      "resource": "_dlt_version",
+      "description": "Created by DLT. Tracks schema updates"
+    },
+    "_dlt_loads": {
+      "name": "_dlt_loads",
+      "columns": {
+        "load_id": {
+          "name": "load_id",
+          "data_type": "text",
+          "nullable": false
+        },
+        "schema_name": {
+          "name": "schema_name",
+          "data_type": "text",
+          "nullable": true
+        },
+        "status": {
+          "name": "status",
+          "data_type": "bigint",
+          "nullable": false
+        },
+        "inserted_at": {
+          "name": "inserted_at",
+          "data_type": "timestamp",
+          "nullable": false
+        },
+        "schema_version_hash": {
+          "name": "schema_version_hash",
+          "data_type": "text",
+          "nullable": true
+        }
+      },
+      "write_disposition": "skip",
+      "resource": "_dlt_loads",
+      "description": "Created by DLT. Tracks completed loads"
+    },
+    "aan_aankoopfactuur": {
+      "columns": {
+        "id": {
+          "name": "id",
+          "nullable": false,
+          "data_type": "bigint",
+          "primary_key": true
+        },
+        "cid": {
+          "name": "cid",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "cid_string": {
+          "name": "cid_string",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "is_delete_protected": {
+          "name": "is_delete_protected",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "is_default_value": {
+          "name": "is_default_value",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "creatie_datum": {
+          "name": "creatie_datum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "creatie_gebruiker": {
+          "name": "creatie_gebruiker",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "wijzigings_datum": {
+          "name": "wijzigings_datum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9,
+          "incremental": true
+        },
+        "wijziging_gebruiker": {
+          "name": "wijziging_gebruiker",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "synchronisatie_datum": {
+          "name": "synchronisatie_datum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "afreken_periode_fk": {
+          "name": "afreken_periode_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "nummer": {
+          "name": "nummer",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "boekingsdatum": {
+          "name": "boekingsdatum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "prorato": {
+          "name": "prorato",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "uitsplitsen": {
+          "name": "uitsplitsen",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "aankoopfactuur_fk": {
+          "name": "aankoopfactuur_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "gevalideerd": {
+          "name": "gevalideerd",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "gebruiker_gevalideerd_fk": {
+          "name": "gebruiker_gevalideerd_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "leverancier_fk": {
+          "name": "leverancier_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "factuurnummer": {
+          "name": "factuurnummer",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "factuurdatum": {
+          "name": "factuurdatum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "devies_fk": {
+          "name": "devies_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "bedrag_inclusief_vm": {
+          "name": "bedrag_inclusief_vm",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 10,
+          "scale": 4
+        },
+        "bedrag_inclusief": {
+          "name": "bedrag_inclusief",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 10,
+          "scale": 4
+        },
+        "btw_aftrekbaar": {
+          "name": "btw_aftrekbaar",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 9,
+          "scale": 4
+        },
+        "btw_niet_aftrekbaar": {
+          "name": "btw_niet_aftrekbaar",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 4,
+          "scale": 4
+        },
+        "btw_medecontractant": {
+          "name": "btw_medecontractant",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 4,
+          "scale": 4
+        },
+        "btw_buitenland": {
+          "name": "btw_buitenland",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 4,
+          "scale": 4
+        },
+        "percentage_aftrekbaar": {
+          "name": "percentage_aftrekbaar",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 4,
+          "scale": 4
+        },
+        "bedrag_exclusief": {
+          "name": "bedrag_exclusief",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 10,
+          "scale": 4
+        },
+        "limietdatum": {
+          "name": "limietdatum",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "iban": {
+          "name": "iban",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "bic": {
+          "name": "bic",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "gestructureerde_mededeling": {
+          "name": "gestructureerde_mededeling",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "mededeling": {
+          "name": "mededeling",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "betaald": {
+          "name": "betaald",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 10,
+          "scale": 4
+        },
+        "betaalbevel": {
+          "name": "betaalbevel",
+          "nullable": true,
+          "data_type": "bool"
+        },
+        "ogm": {
+          "name": "ogm",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "geblokkeerd": {
+          "name": "geblokkeerd",
+          "nullable": true,
+          "data_type": "timestamp",
+          "precision": 9
+        },
+        "gebruiker_geblokkeerd_fk": {
+          "name": "gebruiker_geblokkeerd_fk",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "blokkeer_reden": {
+          "name": "blokkeer_reden",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "creatie_software_versienummer": {
+          "name": "creatie_software_versienummer",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "wijzigings_software_versienummer": {
+          "name": "wijzigings_software_versienummer",
+          "nullable": true,
+          "data_type": "text"
+        },
+        "docs": {
+          "name": "docs",
+          "nullable": true,
+          "data_type": "bigint"
+        },
+        "nu_te_betalen_bedrag": {
+          "name": "nu_te_betalen_bedrag",
+          "nullable": true,
+          "data_type": "decimal",
+          "precision": 4,
+          "scale": 4
+        },
+        "opmerking_intern": {
+          "name": "opmerking_intern",
+          "nullable": true,
+          "data_type": "text"
+        }
+      },
+      "write_disposition": "merge",
+      "name": "aan_aankoopfactuur",
+      "resource": "AAN_Aankoopfactuur"
+    },
+    "_dlt_pipeline_state": {
+      "columns": {
+        "version": {
+          "name": "version",
+          "data_type": "bigint",
+          "nullable": false
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "data_type": "bigint",
+          "nullable": false
+        },
+        "pipeline_name": {
+          "name": "pipeline_name",
+          "data_type": "text",
+          "nullable": false
+        },
+        "state": {
+          "name": "state",
+          "data_type": "text",
+          "nullable": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "data_type": "timestamp",
+          "nullable": false
+        },
+        "version_hash": {
+          "name": "version_hash",
+          "data_type": "text",
+          "nullable": true
+        },
+        "_dlt_load_id": {
+          "name": "_dlt_load_id",
+          "data_type": "text",
+          "nullable": false
+        }
+      },
+      "write_disposition": "append",
+      "file_format": "preferred",
+      "name": "_dlt_pipeline_state",
+      "resource": "_dlt_pipeline_state"
+    }
+  },
+  "settings": {
+    "detections": [
+      "iso_timestamp"
+    ],
+    "default_hints": {
+      "not_null": [
+        "_dlt_id",
+        "_dlt_root_id",
+        "_dlt_parent_id",
+        "_dlt_list_idx",
+        "_dlt_load_id"
+      ],
+      "parent_key": [
+        "_dlt_parent_id"
+      ],
+      "root_key": [
+        "_dlt_root_id"
+      ],
+      "unique": [
+        "_dlt_id"
+      ],
+      "row_key": [
+        "_dlt_id"
+      ]
+    }
+  },
+  "normalizers": {
+    "names": "snake_case",
+    "json": {
+      "module": "dlt.common.normalizers.json.relational",
+      "config": {
+        "propagation": {
+          "tables": {
+            "aan_aankoopfactuur": {
+              "_dlt_id": "_dlt_root_id"
+            }
+          }
+        }
+      }
+    }
+  },
+  "previous_hashes": [
+    "cBROpF8phrzwnBB4rgoTvm0XWhyS9tnBwPn8ZkfyvEg="
+  ]
+}
